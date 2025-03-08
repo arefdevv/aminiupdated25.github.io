@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amini's Marriage Celebrancy</title>
+    <link rel="icon" type="image/x-icon" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+
+        .marriage_process img{
+
+            width: 400px;
+
+        }
+        /* Modern CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #F7931E;
+            --secondary-color: #be9553;
+            --accent-color: #d6c883;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo_title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.4rem;
+            margin-left: auto;
+            margin-right: 2rem;
+        }
+
+        .lang_button, .lang_button2 {
+            padding: 0.4rem 0.8rem;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .lang_button:hover, .lang_button2:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            border: none;
+            background: transparent;
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 992px) {
+            .header {
+                padding: 0.8rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: center;
+                background-color: white;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+                gap: 1rem;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            .lang-switcher {
+                margin-right: 1rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('./Wedding Venue 3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Parallax Effects */
+        .parallax, .parallax2, .parallax3 {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .parallax {
+            background-image: url('./Background\ 1.jpg');
+            min-height: 80vh;
+        }
+        
+        .parallax2 {
+            background-image: url('https://www.aminimarriagecelebrant.com.au/Wedding%20Venue%205.jpg');
+            min-height: 60vh;
+        }
+        
+        .parallax3 {
+            background-image: url('https://www.aminimarriagecelebrant.com.au/Sofreh%20Aghd%206%20copy.jpg');
+            min-height: 60vh;
+        }
+        
+        .parallax_inner {
+            position: relative;
+            padding-top: 20%;
+            padding-bottom: 10%;
+            text-align: center;
+        }
+        
+        .parallax_inner::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+        
+        .margin, .margin2 {
+            height: 50px;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: white;
+        }
+
+        .contact_wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .contact_img {
+            max-width: 400px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .c_p2 {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Overview Section */
+        #overview {
+            background-color: var(--background-color);
+        }
+
+        .first {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .overview_para {
+            flex: 1;
+            line-height: 1.8;
+        }
+
+        .overview_img {
+            flex: 1;
+            max-width: 450px;
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Photo Gallery */
+        .photo_container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            padding: 0 10%;
+        }
+
+        .wedding_photo {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .wedding_photo:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery_btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .gallery_btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Marriage Process Section */
+        .marriage_process {
+            background-color: white;
+        }
+
+        .marriage_process_wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .process {
+            flex: 1;
+        }
+
+        .process_para {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .process_para:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .form_1 {
+            color: var(--accent-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .form_1:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .process_documents {
+            list-style-type: none;
+            margin-left: 2rem;
+        }
+
+        .li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .li:before {
+            content: '✓';
+            position: absolute;
+            left: -1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Enquiry Section */
+        #enquiry {
+            background-color: var(--background-color);
+        }
+
+        .enquiry_wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .enquiry {
+            flex: 1;
+        }
+
+        .enquiry_img {
+            flex: 1;
+            max-width: 450px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        #contact__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+        }
+
+        .form__item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form__item--label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .input {
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(246, 114, 128, 0.2);
+        }
+
+        .input_s {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form__submit {
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            align-self: flex-start;
+            transition: var(--transition);
+        }
+
+        .form__submit:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Social Media Section */
+        .social_media {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 3rem 0 2rem;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .icon {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .icon i {
+            font-size: 1.5rem;
+        }
+
+        .icon:hover {
+            transform: translateY(-8px);
+        }
+
+        .facebook:hover {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .whatsapp:hover {
+            background-color: #25d366;
+            color: white;
+        }
+
+        .tooltip {
+            position: absolute;
+            top: -40px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .tooltip:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+        }
+
+        .icon:hover .tooltip {
+            opacity: 1;
+            top: -50px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer_para {
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            section {
+                padding: 3rem 5%;
+            }
+
+            .contact_wrapper, .first, .marriage_process_wrapper, .enquiry_wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .process_para {
+                text-align: left;
+            }
+
+            .form__submit {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .logo_title {
+                display: none;
+            }
+
+            .logo-container {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .lang-switcher {
+                position: absolute;
+                top: 100%;
+                right: 5%;
+                background-color: white;
+                padding: 0.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="./index.html">
+                <img class="logo" src="https://www.aminimarriagecelebrant.com.au/logo.png" alt="Amini Marriage Celebrant Logo">
+            </a>
+            <p class="logo_title">Amini Marriage Celebrant</p>
+        </div>
+
+        <div class="lang-switcher">
+            <button class="lang_button2"><a href="./farsi_index.html">فارسی</a></button>
+            <button class="lang_button"><a href="./index.html">English</a></button>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#overview">About</a>
+            <a href="#marriage">Services</a>
+            <a href="./gallery.html">Gallery</a>
+            <a href="#enquiry">Contact</a>
+        </nav>
+        
+        <button class="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <section class="parallax">
+        <div class="parallax_inner">
+            <div class="hero-content">
+                <h1>Amini Marriage Celebrant</h1>
+                <p>Professional marriage celebrant services in Melbourne and across Australia</p>
+                <a href="#enquiry" class="cta-button">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="margin"></div>
+    <section id="contact">
+        <div class="section-header">
+            <h2>Contact Details</h2>
+        </div>
+        <div class="contact_wrapper">
+            <div>
+                <p class="c_p2">
+                    Hosain Ali Amini <br>
+                    +61 470 610 282 <br>
+                    Email: contact@aminimarriagecelebrant.com.au
+                </p>
+            </div>
+            <img class="contact_img" src="https://www.aminimarriagecelebrant.com.au/Amini%20Marriage%20Celebrant.jpg" alt="Hosain Ali Amini">
+        </div>
+    </section>
+    
+    <div class="margin2"></div>
+    <section class="parallax2">
+        <div class="parallax_inner"></div>
+    </section>
+
+    <section id="overview">
+        <div class="section-header">
+            <h2>Overview</h2>
+        </div>
+        <div class="first">
+            <p class="overview_para">
+                My name is Hosain Ali Amini and I am a certified Marriage Celebrant located in Melbourne. 
+                As a registered Marriage Celebrant under the Attorney General, I can solemnize and register 
+                your marriage and provide you with an official Marriage Certificate. In addition, I offer Islamic
+                marriage solemnisation services and can perform Nikah in accordance with Shariah Law.
+                <br><br>
+                I understand that the process of obtaining a marriage certificate and navigating Australian 
+                Immigration regulations can be complicated, which is why I am able to provide you a supporting 
+                letter for Partner Visas (Subclass 300) after you have filled out the Notice of Intended Marriage Form
+                (NOIM). I am also experienced in helping Iranians living in Australia to get their marriage registered
+                with the Iran Embassy in Canberra. In these cases, an Australian Official Marriage Certificate
+                and an Islamic Marriage Certificate are required, and I am here to help you obtain both.
+                <br><br>
+                In addition to providing you with official certificates, I can also assist you with planning your wedding.
+                I know that planning a wedding can be stressful and overwhelming, which is why I offer to help you find the
+                perfect venue, photographer, food catering and decoration specialists. From start to finish, I will be there
+                to help ensure that every detail is taken care of, so you can focus on enjoying your special day.
+                <br><br>
+                Contact me today find out more about the services and products I offer.
+            </p>
+            <img class="overview_img" src="https://www.aminimarriagecelebrant.com.au/Wedding%20Rings.JPG" alt="Wedding Rings">
+        </div>
+    </section>
+
+    <div class="photo_container">
+        <img class="wedding_photo" src="https://www.aminimarriagecelebrant.com.au/Sofreh%20Aghd%204.jpg" alt="Sofreh Aghd">
+        <img class="wedding_photo" src="https://www.aminimarriagecelebrant.com.au/Wedding%20Venue%203.jpg" alt="Wedding Venue">
+    </div>
+    <button class="gallery_btn"><a href="./gallery.html">View Gallery</a></button>
+
+    <section id="marriage" class="marriage_process">
+        <div class="section-header">
+            <h2>Marriage Process</h2>
+        </div>
+        <div class="marriage_process_wrapper">
+            <div class="process">
+                <p class="process_para">1. Contact me today to fill out a Notice of Intended Marriage (NOIM). You can also download
+                    the form <a class="form_1" target="_blank" href="./Notice of Intended Marriage (NOIM).PDF">here.</a></p>
+                <p class="process_para">2. Once the Notice of Intended Marriage (NOIM) form is filled out, it must remain with me for a
+                    period of one calendar month. During this time, I will also help you fill out all the relevant
+                    documentation and meet any identity requirements.</p>
+                <p class="process_para">3. On your wedding day, I will officially solemnise your marriage in the presence of the Groom
+                    and Bride as well as two witnesses.</p>
+                <p class="process_para">4. I will then apply for an Official Marriage Certificate through the Marriage Registry Department.</p>
+                <p class="process_para">5. After 4 – 6 weeks, your marriage will be registered with the Marriage Registry Department,
+                    and your Official Marriage Certificate will be delivered to you by mail.</p>
+                <p class="process_para">Contact me today on 0470 610 282 or contact@aminimarriagecelebrant.com.au to find out how to get married, 
+                    receive an Official Marriage Certificate for Partner Visa or preform Islamic Nikah in Melbourne or anywhere in Australia. 
+                    You may also read the following brochure in English <a href="./Marriage Information - English.pdf" target="_blank" class="form_1">here</a> 
+                    or Farsi <a href="./Farsi Marriage Information.pdf" class="form_1" target="_blank">here</a> for further information on getting married in Australia.</p>
+                <p class="process_para">You need the following documents in order to officially get married in Australia:
+                    <ul class="process_documents">
+                        <li class="li">Birth Certificate</li>
+                        <li class="li">Driver License</li>
+                        <li class="li">Passport</li>
+                        <li class="li">Proof of cessation of marriage if you have previously been married</li>
+                    </ul>
+                </p>
+                <p class="process_para">If you do not possess any of the above documents, you will need to fill out, and sign a Statutory
+                    Declaration with an approved witness. More information can be found at
+                    <a class="form_1" href="https://www.justice.vic.gov.au/statdecs">https://www.justice.vic.gov.au/statdecs.</a></p>
+                <p class="process_para">If any of the above documents are in another language, they have to be translated to English by an
+                    approved NAATI translator. My business also offers approved NAATI translations from Dari or
+                    Farsi to English.</p>
+            </div>
+            <img src="https://www.aminimarriagecelebrant.com.au/Wedding%201.jpg" alt="Wedding Ceremony">
+        </div>
+    </section>
+
+    <section class="parallax3">
+        <div class="parallax_inner"></div>
+    </section>
+    
+    <section id="enquiry">
+        <div class="section-header">
+            <h2>Enquiry</h2>
+        </div>
+        <div class="enquiry_wrapper">
+            <div class="enquiry">
+                <form id="contact__form" onsubmit="contact(event)">
+                    <div class="form__item">
+                        <label class="form__item--label">Name</label>
+                        <input class="input" name="user_name" type="text" required="required">
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Email</label>
+                        <input class="input" name="user_email" type="email">
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Phone</label>
+                        <input class="input" name="user_number" type="tel" required="required" pattern="[0-9]{4}[0-9]{3}[0-9]{3}">
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Enquiry</label>
+                        <textarea class="input input_s" name="message" required="required"></textarea>
+                    </div>
+                    <button id="contact_submit" class="form__submit">
+                        Send Enquiry
+                    </button>
+                </form>
+            </div>
+            <img src="https://www.aminimarriagecelebrant.com.au/last.PNG" alt="" class="enquiry_img">
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="section-header">
+            <h2>Reviews</h2>
+        </div>
+        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+        <div class="elfsight-app-fe23da8d-bf99-4eb7-9407-924d9f7d055f"></div>
+    </section>
+
+    <h4 id="social" class="social_media">Social Media</h4>
+    <div class="wrapper">
+        <a href="https://www.facebook.com/profile.php?id=100078716052962" class="icon facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/amini_marriage_celebrant/" class="icon instagram">
+            <i class="fab fa-instagram"></i>
+            <span class="tooltip">Instagram</span>
+        </a>
+        <a href="https://wa.me/+61470610282" class="icon whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        <p class="footer_para">
+            © 2023 Amini Marriage Celebrant | All Rights Reserved
+        </p>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("6CAf36LrcVbDwY1FH");
+        })();
+
+        // Mobile navigation toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            
+            // Change hamburger icon when menu is active
+            const icon = this.querySelector('i');
+            if (document.querySelector('.nav-links').classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Form submission
+        function contact(event) {
+            event.preventDefault();
+            
+            const serviceID = 'default_service';
+            const templateID = 'template_cozf5dp';
+            
+            emailjs.sendForm(serviceID, templateID, '#contact__form')
+                .then(() => {
+                    alert('Your message has been sent successfully!');
+                    document.querySelector('#contact__form').reset();
+                }, (err) => {
+                    alert('Failed to send the message. Error: ' + JSON.stringify(err));
+                });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
